@@ -1,13 +1,11 @@
 import React from "react";
-import {Text, View, StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 
 import Login from "./src/views/login";
 import Sign from "./src/views/sign";
 
 // Função de redenrização
 const App = () => {
-
-  let name = "SENAI - JANDIRA"
 
   return (
     // <View>
