@@ -3,15 +3,22 @@ import React from "react";
 import {View, Text, TextInput, StyleSheet} from "react-native";
 import COLORS from "../const/color";
 
-const Input = ({label, ...props}) => {
+const Input = ({label, error, onFocus = () =>{}, ...props}) => {
 
     return(
         
         <View style={style.formContainer}>
             <Text style={style.label}>{label}</Text>
-            <View style={style.inputContainer}>
-                <TextInput style={style.textInput} {...props}/>
+            <View style={[style.inputContainer, 
+                            {borderColor: error ? COLORS.red : COLORS.darkBlue}]}>
+                <TextInput 
+                        style={style.textInput} 
+                        {...props} 
+                        onFocus={() => {onFocus()}}/>
             </View>
+
+            <Text>{error}</Text>
+
         </View>
     );
 

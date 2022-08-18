@@ -1,8 +1,10 @@
 import React from "react";
 
 import {Text, View, StyleSheet, SafeAreaView, ScrollView} from "react-native";
+
 import Input from "../components/input";
 import Button from "../components/button";
+
 import COLORS from "../const/color";
 
 // Função de redenrização
@@ -20,6 +22,7 @@ const Sign = () => {
   /*Função que anipula a entrada de dados na State no método onChangeText */
   const handlerOnChange = (text, input) =>{
 
+    /**Prev State : estado atual da State */
     setInputs((prevState) =>(
 
       //console.log(text)
@@ -32,6 +35,17 @@ const Sign = () => {
     //console.log(inputs);
   };
 
+  /*State de erro de preenchimento*/
+  const [errors, setErrors] = React.useState({});
+
+  /*Função handler(manipuladora) que configura as mensagens de erro na state. */
+  const handlerErrors = (errorMesage, input)=>{
+
+    /*Podemos trocar o par de chaves do corpo de uma função quando 
+    esta tem somente uma linha, para fazermos o retorno */
+    setErrors((prevState) => ({...prevState, [input]:errorMesage}));
+  }
+
   /*Validação dos dados*/
   const validate = ()=>{
 
@@ -40,23 +54,27 @@ const Sign = () => {
     if(!inputs.titulo){
 
       result = false;
-      console.log('chssata')
       
+      handlerErrors('Informe o título do livro.', 'titulo');
     }
 
     if(!inputs.descricao){
 
       result = false;
-      console.log('chata')
+
+      handlerErrors('Informe a descrição do livro.', 'descricao');
       
     }
 
     if(!inputs.capa){
 
       result = false;
-      console.log('chata')
+
+      handlerErrors('Informe a capa do livro.', 'capa')
       
     }
+
+    console.log(errors);
 
   };
 
@@ -66,9 +84,21 @@ const Sign = () => {
       <ScrollView style={styles.scroll}>
         <Text style={styles.title}>CADASTRO DE LIVROS</Text>
         <View style={styles.view}>
-          <Input label="Título" onChangeText = {(text) => {handlerOnChange(text,'titulo')} }/>
-          <Input label="Descrição" onChangeText = {(text) => {handlerOnChange(text,'descricao')} }/>
-          <Input label="Capa" onChangeText = {(text) => {handlerOnChange(text,'capa')} }/>
+          <Input 
+              label="Título" 
+              onChangeText = {(text) => {handlerOnChange(text,'titulo')} } 
+              error={errors.titulo} 
+              onFocus={() => {handlerErrors(null, 'titulo')}}/>
+          <Input 
+              label="Descrição" 
+              onChangeText = {(text) => {handlerOnChange(text,'descricao')} } 
+              error={errors.descricao}
+              onFocus={() => {handlerErrors(null, 'descricao')}}/>
+          <Input 
+              label="Capa" 
+              onChangeText = {(text) => {handlerOnChange(text,'capa')} } 
+              error={errors.capa}
+              onFocus={() => {handlerErrors(null, 'capa')}}/>
           <Button text="CADASTRAR" onPress={validate}/>
         </View>
       </ScrollView>
