@@ -85,17 +85,20 @@ const Sign = () => {
         <Text style={styles.title}>CADASTRO DE LIVROS</Text>
         <View style={styles.view}>
           <Input 
-              label="Título" 
+              label="Título"
+              iconName="book-outline" 
               onChangeText = {(text) => {handlerOnChange(text,'titulo')} } 
               error={errors.titulo} 
               onFocus={() => {handlerErrors(null, 'titulo')}}/>
           <Input 
               label="Descrição" 
+              iconName="card-text-outline"
               onChangeText = {(text) => {handlerOnChange(text,'descricao')} } 
               error={errors.descricao}
               onFocus={() => {handlerErrors(null, 'descricao')}}/>
           <Input 
               label="Capa" 
+              iconName="image-outline"
               onChangeText = {(text) => {handlerOnChange(text,'capa')} } 
               error={errors.capa}
               onFocus={() => {handlerErrors(null, 'capa')}}/>

@@ -2,8 +2,9 @@ import React from "react";
 
 import {View, Text, TextInput, StyleSheet} from "react-native";
 import COLORS from "../const/color";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Input = ({label, error, onFocus = () =>{}, ...props}) => {
+const Input = ({label,iconName, error, onFocus = () =>{}, ...props}) => {
 
     return(
         
@@ -11,6 +12,7 @@ const Input = ({label, error, onFocus = () =>{}, ...props}) => {
             <Text style={style.label}>{label}</Text>
             <View style={[style.inputContainer, 
                             {borderColor: error ? COLORS.red : COLORS.darkBlue}]}>
+                <Icon name={iconName}/>
                 <TextInput 
                         style={style.textInput} 
                         {...props} 
@@ -45,6 +47,11 @@ const style = StyleSheet.create({
     textInput:{
         color: COLORS.darkBlue,
         flex: 1,
+    },
+    icon:{
+        fontSize: 22,
+        color: COLORS.darkBlue,
+        marginRight: 10,
     }
 });
 
