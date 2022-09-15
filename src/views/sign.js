@@ -7,6 +7,8 @@ import Button from "../components/button";
 
 import COLORS from "../const/color";
 
+import apiLivraria from "../services/apiLivraria";
+
 // Função de redenrização
 const Sign = () => {
   
@@ -19,7 +21,7 @@ const Sign = () => {
 
   });
 
-  /*Função que anipula a entrada de dados na State no método onChangeText */
+  /*Função que manipula a entrada de dados na State no método onChangeText */
   const handlerOnChange = (text, input) =>{
 
     /**Prev State : estado atual da State */
@@ -74,9 +76,33 @@ const Sign = () => {
       
     }
 
+    if(validate){
+
+      cadastrar()
+
+      console.log('cadastrou')
+
+    }
+
     console.log(errors);
 
-  };
+  }
+
+  const cadastrar = () =>{
+
+    try{
+
+      const response = apiLivraria.post('/livros',{
+
+        titulo: inputs.titulo,
+        descricao: inputs.descricao,
+        imagem: inputs.capa
+
+      })
+
+    }catch(error){}
+
+  }
 
   return (
 

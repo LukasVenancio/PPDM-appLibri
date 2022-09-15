@@ -23,7 +23,6 @@ const Input = ({label,iconName, error, onFocus = () =>{}, ...props}) => {
 
         </View>
     );
-
 }
 
 const style = StyleSheet.create({

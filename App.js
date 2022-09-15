@@ -1,8 +1,9 @@
 import React from "react";
 import {StyleSheet} from "react-native";
 
-import Login from "./src/views/login";
+//import Login from "./src/views/login";
 import Sign from "./src/views/sign";
+import List from "./src/views/list";
 
 // Função de redenrização
 const App = () => {
@@ -13,7 +14,8 @@ const App = () => {
     //    precisamos o cercar com chaves */}
     //   <Text style={style.title}>{name}</Text>
     // </View>
-    <Sign/>
+    //<Sign/>
+    <List/>
 
   );
 
