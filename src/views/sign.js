@@ -76,7 +76,7 @@ const Sign = () => {
       
     }
 
-    if(validate){
+    if(result){
 
       cadastrar()
 
