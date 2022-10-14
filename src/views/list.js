@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity } from "react-native";
 
 import Input from "../components/input";
 import Button from "../components/button";
@@ -42,28 +42,26 @@ const list = () => {
 
                         livro => (
 
-                            <View style={styles.post}>
+                            <TouchableOpacity 
+                                style={styles.post} 
+                                key={livro.cod_livro} 
+                                onPress={() => {}}
+                            >
 
-                                <Image style={styles.image} source={capaLivro150} />
+                                <View>
 
-                                <Text style={styles.title}>
-                                    {livro.titulo}
-                                </Text>
+                                    <Image style={styles.image} source={capaLivro150} />
 
-                            </View>
+                                    <Text style={styles.title}>
+                                        {livro.titulo}
+                                    </Text>
+
+                                </View>
+
+                            </TouchableOpacity>
 
                         ))
                 }
-
-                {/* <View style={styles.post}>
-
-                    <Image style={styles.image} source={capaLivro150}/>
-                    
-                    <Text style={styles.title}>
-                        LOR
-                    </Text>
-
-                </View> */}
 
             </View>
 

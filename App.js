@@ -1,43 +1,42 @@
 import React from "react";
-import {StyleSheet} from "react-native";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //import Login from "./src/views/login";
 import Sign from "./src/views/sign";
 import List from "./src/views/list";
+import Details from "./src/views/details";
+
+const Stack = createNativeStackNavigator()
 
 // Função de redenrização
 const App = () => {
 
   return (
-    // <View>
-    //   {/* Sempre que usamos JS dentro de um componente
-    //    precisamos o cercar com chaves */}
-    //   <Text style={style.title}>{name}</Text>
-    // </View>
-    //<Sign/>
-    <List/>
+    
+    // <NavigationContainer>
 
+    //   <Stack.Navigator>
+
+    //       <Stack.Screen
+    //         name="Sign"
+    //         component={Sign}
+    //         options={{title: 'Cadastro de livros'}}
+    //       />
+
+    //       <Stack.Screen
+    //         name="List"
+    //         component={List}
+    //         options={{title: 'Listagem de livros'}}/>
+
+    //   </Stack.Navigator>
+
+    // </NavigationContainer>
+    // <List/>
+    <Details/>
   );
 
 }
-
-const style = StyleSheet.create({
-  
-  container:{},
-
-  title:{
-
-    width:"100%",
-    backgroundColor:"#f00",
-    textAlign:"center",
-    fontSize:16,
-    lineHeight:26,
-    color:"#FFF",
-    fontWeight:"bold",
-    padding:16
-  
-  }
-});
-
 //Torna a função App visível em todo o projeto
 export default App;
