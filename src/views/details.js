@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import { ScrollView, View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import apiLivraria from '../services/apiLivraria';
-import capaLivro150 from '../assets/livros/lor150.png';
-import COLORS from '../const/color';
+import React, { useEffect, useState } from 'react'
+import { ScrollView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import apiLivraria from '../services/apiLivraria'
+import capaLivro150 from '../assets/livros/lor150.png'
+import COLORS from '../const/color'
 
-const Details = () => {
+const Details = ({ route, navigation }) => {
 
-    const cod_livro = 3;
+    const { cod_livro } = route.params
 
     const [livro, setLivro] = useState({
         cod_livro: '',
@@ -20,26 +20,35 @@ const Details = () => {
         () => {
 
             apiLivraria.get(`/livros/${cod_livro}`)
-            .then(
+                .then(
 
-                (data) => {
+                    (data) => {
 
-                    setLivro(data.data[0])
-                    // console.log(data.data[0])
-                }
-            )
-        }
+                        setLivro(data.data[0])
+                        // console.log(data.data[0])
+                    }
+                )
+        }, []
     )
 
-    return(
+    const del = (cod) => {
+
+        try{
+            apiLivraria.delete(`/livros/${cod}`)
+            navigation.goBack()
         
+        }catch(err){}
+    }
+
+    return (
+
         <ScrollView>
 
             <View style={styles.container}>
 
                 <View style={styles.post}>
 
-                    <Image style={styles.image} source={capaLivro150}/>
+                    <Image style={styles.image} source={capaLivro150} />
 
                     <Text style={styles.title}>{livro.titulo}</Text>
                     <Text style={styles.description}>{livro.descricao}</Text>
@@ -48,13 +57,18 @@ const Details = () => {
 
                 <View style={styles.buttonContainer}>
 
-                    <TouchableOpacity style={[styles.button, {backgroundColor: COLORS.darkBlue}]}>
+                    <TouchableOpacity
+                        style={[styles.button, { backgroundColor: COLORS.darkBlue }]}
+                        onPress={() => navigation.navigate('Edit', { cod_livro: livro.cod_livro })}>
 
                         <Text style={styles.textButton}>EDITAR</Text>
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, {backgroundColor: COLORS.red}]}>
+                    <TouchableOpacity
+                        style={[styles.button, { backgroundColor: COLORS.red }]}
+                        onPress={() => del(livro.cod_livro)}
+                    >
 
                         <Text style={styles.textButton}>EXCLUIR</Text>
 
@@ -98,13 +112,13 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         fontSize: 16
     },
-    buttonContainer:{
+    buttonContainer: {
         flex: 1,
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'center'
     },
-    button:{
+    button: {
         width: '20%',
         marginHorizontal: 10,
         // backgroundColor: COLORS.darkBlue,
@@ -112,10 +126,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10
     },
-    textButton:{
+    textButton: {
         padding: 10,
         textAlign: 'center',
 
     }
 })
-export default Details;
+export default Details

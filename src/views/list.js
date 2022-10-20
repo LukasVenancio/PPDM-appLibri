@@ -1,17 +1,17 @@
-import React from "react";
+import React from "react"
 
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image, TouchableOpacity } from "react-native"
 
-import Input from "../components/input";
-import Button from "../components/button";
+import Input from "../components/input"
+import Button from "../components/button"
 
-import COLORS from "../const/color";
-import capaLivro150 from '../assets/livros/lor150.png';
+import COLORS from "../const/color"
+import capaLivro150 from '../assets/livros/lor150.png'
 
-import apiLivraria from "../services/apiLivraria";
-import { useState, useEffect } from "react";
+import apiLivraria from "../services/apiLivraria"
+import { useState, useEffect } from "react"
 
-const list = () => {
+const List = ({ navigation }) => {
 
     const [livros, setLivros] = useState([])
 
@@ -29,7 +29,7 @@ const list = () => {
                 )
         },
         []
-    );
+    )
 
     return (
 
@@ -45,7 +45,7 @@ const list = () => {
                             <TouchableOpacity 
                                 style={styles.post} 
                                 key={livro.cod_livro} 
-                                onPress={() => {}}
+                                onPress={() => navigation.navigate('Details', {cod_livro: livro.cod_livro})}
                             >
 
                                 <View>
@@ -60,13 +60,14 @@ const list = () => {
 
                             </TouchableOpacity>
 
-                        ))
+                        )
+                    )
                 }
 
             </View>
 
         </ScrollView>
-    );
+    )
 
 }
 
@@ -94,6 +95,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     }
-});
+})
 
-export default list;
+export default List

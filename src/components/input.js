@@ -4,7 +4,7 @@ import {View, Text, TextInput, StyleSheet} from "react-native";
 import COLORS from "../const/color";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Input = ({label,iconName, error, onFocus = () =>{}, ...props}) => {
+const Input = ({label,iconName, value, error, onFocus = () =>{}, ...props}) => {
 
     return(
         
@@ -14,6 +14,7 @@ const Input = ({label,iconName, error, onFocus = () =>{}, ...props}) => {
                             {borderColor: error ? COLORS.red : COLORS.darkBlue}]}>
                 <Icon name={iconName}/>
                 <TextInput 
+                        value={value}
                         style={style.textInput} 
                         {...props} 
                         onFocus={() => {onFocus()}}/>
